@@ -58,21 +58,31 @@ class App extends Component {
     this.state = {
       result: '',
       length: 8,
-      minAmountOfLowerChars: 1,
-      minAmountOfUpperChars: 1,
-      minAmountOfNums: 1,
-      minAmountOfSymbs: 0,
-      toLowerCase: false,
-      toUpperCase: false
+      options: {
+        minAmountOfLowerChars: 1,
+        minAmountOfUpperChars: 1,
+        minAmountOfNums: 1,
+        minAmountOfSymbs: 0,
+        toLowerCase: false,
+        toUpperCase: false
+      },
+      error: ''
     }
   }
 
   generatePassword = () => {
-    const { length, minAmountOfLowerChars, minAmountOfUpperChars, minAmountOfNums, minAmountOfSymbs, toLowerCase, toUpperCase } = this.state
+    let result;
+    const { options } = this.state;
+    const { length } = this.state;
 
-    this.setState({
-      result: passwordNinja(length, { minAmountOfLowerChars, minAmountOfUpperChars, minAmountOfNums, minAmountOfSymbs, toLowerCase, toUpperCase })
-    });
+    try {
+      result = passwordNinja(length, { ...options });
+      this.setState({
+        result
+      });
+    } catch (e) {
+      alert(e);
+    }
   }
 
   handleInputChange = (e) => {
@@ -80,9 +90,18 @@ class App extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
+    if (name === 'result') {
+      this.setState({
+        [name]: value
+      });
+    } else {
+      this.setState({
+        options: {
+          ...this.state.options,
+          [name]: value
+        }
+      });
+    }
   }
 
   handleNumberInputChange = (e) => {
@@ -90,14 +109,23 @@ class App extends Component {
     const value = Number(target.value);
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
+    if (name === 'length') {
+      this.setState({
+        [name]: value
+      });
+    } else {
+      this.setState({
+        options: {
+          ...this.state.options,
+          [name]: value
+        }
+      });
+    }
   }
 
   render() {
-    const { result, length, minAmountOfLowerChars, minAmountOfUpperChars,
-      minAmountOfNums, minAmountOfSymbs, toLowerCase, toUpperCase } = this.state
+    const { result, length, options } = this.state;
+    const { toLowerCase, toUpperCase } = this.state.options;
 
     return (
       <Wrapper>
@@ -109,7 +137,7 @@ class App extends Component {
         <Grid container>
           <Grid item lg={12}>
             <Paper elevation={1} className="h-p-15 h-m-b-40">
-              <Grid container spacing={15} alignItems="center">
+              <Grid container spacing={20} alignItems="center">
                 <Grid item lg={9}>
                   <Input
                     value={result}
@@ -157,7 +185,7 @@ class App extends Component {
                       <Label>
                         <Grid container justify="space-between" alignItems="center" spacing={16}>
                           <Grid item lg={3}>
-                            <Input type="number" value={minAmountOfLowerChars} name="minAmountOfLowerChars" onChange={this.handleNumberInputChange} />
+                            <Input type="number" value={options.minAmountOfLowerChars} name="minAmountOfLowerChars" onChange={this.handleNumberInputChange} />
                           </Grid>
                           <Grid item lg={9}>
                             <Typography variant="subheading">minAmountOfLowerChars</Typography>
@@ -174,7 +202,7 @@ class App extends Component {
                       <Label>
                         <Grid container justify="space-between" alignItems="center" spacing={16}>
                           <Grid item lg={3}>
-                            <Input type="number" value={minAmountOfUpperChars} name="minAmountOfUpperChars" onChange={this.handleNumberInputChange} />
+                            <Input type="number" value={options.minAmountOfUpperChars} name="minAmountOfUpperChars" onChange={this.handleNumberInputChange} />
                           </Grid>
                           <Grid item lg={9}>
                             <Typography variant="subheading">minAmountOfUpperChars</Typography>
@@ -191,7 +219,7 @@ class App extends Component {
                       <Label>
                         <Grid container justify="space-between" alignItems="center" spacing={16}>
                           <Grid item lg={3}>
-                            <Input type="number" value={minAmountOfNums} name="minAmountOfNums" onChange={this.handleNumberInputChange} />
+                            <Input type="number" value={options.minAmountOfNums} name="minAmountOfNums" onChange={this.handleNumberInputChange} />
                           </Grid>
                           <Grid item lg={9}>
                             <Typography variant="subheading">minAmountOfNums</Typography>
@@ -208,7 +236,7 @@ class App extends Component {
                       <Label>
                         <Grid container justify="space-between" alignItems="center" spacing={16}>
                           <Grid item lg={3}>
-                            <Input type="number" value={minAmountOfSymbs} name="minAmountOfSymbs" onChange={this.handleNumberInputChange} />
+                            <Input type="number" value={options.minAmountOfSymbs} name="minAmountOfSymbs" onChange={this.handleNumberInputChange} />
                           </Grid>
                           <Grid item lg={9}>
                             <Typography variant="subheading">minAmountOfSymbs</Typography>
