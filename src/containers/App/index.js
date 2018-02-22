@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 
-import styled, { injectGlobal } from 'styled-components';
+import { injectGlobal } from 'styled-components';
 
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
 import Switch from 'material-ui/Switch';
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
-import IconButton from 'material-ui/IconButton';
+import List, { ListItem } from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 
 import Wrapper from '../../components/Wrapper';
-import Title from '../../components/Title';
 import Label from '../../components/Label';
 
 import passwordNinja from 'password-ninja';
