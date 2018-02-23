@@ -171,7 +171,7 @@ class App extends Component {
                             <Input type="number" value={length} name="length" onChange={this.handleNumberInputChange} />
                           </Grid>
                           <Grid item lg={9}>
-                            <Typography variant="subheading">length</Typography>
+                            <Typography variant="subheading">password length</Typography>
                           </Grid>
                         </Grid>
                       </Label>
@@ -188,7 +188,7 @@ class App extends Component {
                             <Input type="number" value={options.minAmountOfLowerChars} name="minAmountOfLowerChars" onChange={this.handleNumberInputChange} />
                           </Grid>
                           <Grid item lg={9}>
-                            <Typography variant="subheading">minAmountOfLowerChars</Typography>
+                            <Typography variant="subheading">min number of lowercase letters</Typography>
                           </Grid>
                         </Grid>
                       </Label>
@@ -205,7 +205,7 @@ class App extends Component {
                             <Input type="number" value={options.minAmountOfUpperChars} name="minAmountOfUpperChars" onChange={this.handleNumberInputChange} />
                           </Grid>
                           <Grid item lg={9}>
-                            <Typography variant="subheading">minAmountOfUpperChars</Typography>
+                            <Typography variant="subheading">min number of uppercase letters</Typography>
                           </Grid>
                         </Grid>
                       </Label>
@@ -222,7 +222,7 @@ class App extends Component {
                             <Input type="number" value={options.minAmountOfNums} name="minAmountOfNums" onChange={this.handleNumberInputChange} />
                           </Grid>
                           <Grid item lg={9}>
-                            <Typography variant="subheading">minAmountOfNums</Typography>
+                            <Typography variant="subheading">min number of numbers</Typography>
                           </Grid>
                         </Grid>
                       </Label>
@@ -239,7 +239,7 @@ class App extends Component {
                             <Input type="number" value={options.minAmountOfSymbs} name="minAmountOfSymbs" onChange={this.handleNumberInputChange} />
                           </Grid>
                           <Grid item lg={9}>
-                            <Typography variant="subheading">minAmountOfSymbs</Typography>
+                            <Typography variant="subheading">min number of symbols</Typography>
                           </Grid>
                         </Grid>
                       </Label>
@@ -256,7 +256,7 @@ class App extends Component {
                             <Switch type="checkbox" label="To Lower Case Chars" onChange={this.handleInputChange} checked={toLowerCase} name="toLowerCase" color="primary" />
                           </Grid>
                           <Grid item lg={9}>
-                            <Typography variant="subheading">toLowerCase</Typography>
+                            <Typography variant="subheading">make password in lowercase letters</Typography>
                           </Grid>
                         </Grid>
                       </Label>
@@ -273,7 +273,7 @@ class App extends Component {
                             <Switch type="checkbox" label="To Upper Case Chars" onChange={this.handleInputChange} checked={toUpperCase} name="toUpperCase" color="primary" />
                           </Grid>
                           <Grid item lg={9}>
-                            <Typography variant="subheading">toUpperCase</Typography>
+                            <Typography variant="subheading">make password in uppercase letters</Typography>
                           </Grid>
                         </Grid>
                       </Label>
@@ -287,8 +287,19 @@ class App extends Component {
 
           <Grid item lg={5}>
             <Typography variant="title" gutterBottom={true}>About</Typography>
-            <Paper elevation={5}>
-              Test
+            <Paper elevation={5} className="h-p-15">
+              <Typography>
+                password-ninja is designed to quickly generate passwords
+              </Typography>
+              <br />
+              <Typography>
+                Documentation, more information and sources can be found at <a href="https://github.com/a1ike/password-ninja-app">this link</a>
+              </Typography>
+              <br />
+              <Typography>
+              Copyright © 2018, <a href="https://github.com/a1ike">Dmitry Katyushin</a><br />
+              Released under the <a href="https://github.com/a1ike/password-ninja-app/blob/master/LICENSE">MIT License</a>
+              </Typography>
             </Paper>
           </Grid>
 
